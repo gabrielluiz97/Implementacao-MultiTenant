@@ -16,12 +16,6 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-//Estratégia 1
-//builder.Services.AddDbContext<ApplicationContext>(options => options
-//                .UseNpgsql(@"Host=localhost:5432;Username=postgres;Password=123;Database=Multitenant")
-//                .LogTo(Console.WriteLine)
-//                .EnableSensitiveDataLogging()
-//    );
 
 //Estratégia 2
 builder.Services.AddDbContext<ApplicationContext>((provider, options) =>
