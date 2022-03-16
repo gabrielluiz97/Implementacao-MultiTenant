@@ -3,11 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32210.238
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Multitenant.API", "EF.Core.Multitenant\Multitenant.API.csproj", "{1E8CB98C-EDDF-4E59-A8CF-F2C8A27DEE7D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Multitenant.API", "EF.Core.Multitenant\Multitenant.API.csproj", "{1E8CB98C-EDDF-4E59-A8CF-F2C8A27DEE7D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Multitenant.Infraestructure", "Multitenant.Infraestructure\Multitenant.Infraestructure.csproj", "{E7160C46-BAAD-4946-B93D-D5DD6C43E191}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Multitenant.Domain", "Multitenant.Domain\Multitenant.Domain.csproj", "{3393E4F2-6768-4BBE-A27F-C1FDDC438E48}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Multitenant.Domain", "Multitenant.Domain\Multitenant.Domain.csproj", "{3393E4F2-6768-4BBE-A27F-C1FDDC438E48}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,10 +17,6 @@ Global
 		{1E8CB98C-EDDF-4E59-A8CF-F2C8A27DEE7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1E8CB98C-EDDF-4E59-A8CF-F2C8A27DEE7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1E8CB98C-EDDF-4E59-A8CF-F2C8A27DEE7D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E7160C46-BAAD-4946-B93D-D5DD6C43E191}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E7160C46-BAAD-4946-B93D-D5DD6C43E191}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E7160C46-BAAD-4946-B93D-D5DD6C43E191}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E7160C46-BAAD-4946-B93D-D5DD6C43E191}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3393E4F2-6768-4BBE-A27F-C1FDDC438E48}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3393E4F2-6768-4BBE-A27F-C1FDDC438E48}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3393E4F2-6768-4BBE-A27F-C1FDDC438E48}.Release|Any CPU.ActiveCfg = Release|Any CPU

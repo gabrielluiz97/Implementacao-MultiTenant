@@ -11,7 +11,7 @@ namespace Multitenant.Infraestructure.Database.Installers
     public static class Installer
     {
 
-        public static void Install(this IServiceCollection services)
+        public static void InstallDependences(this IServiceCollection services)
         {
             services.AddScoped<TenantData>();
         }

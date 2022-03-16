@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using Multitenant.API.Interceptors;
 using Multitenant.API.Provider;
 using System;
 using System.Collections.Generic;
@@ -11,9 +12,11 @@ namespace Multitenant.Infraestructure.Database.Installers
     public static class Installer
     {
 
-        public static void Install(this IServiceCollection services)
+        public static void InstallDependenceInjections(this IServiceCollection services)
         {
             services.AddScoped<TenantData>();
+            services.AddScoped<StrategySchemaInterceptor>();
+
         }
     }
 }

@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Multitenant.Infraestructure\Multitenant.Infraestructure.csproj" />
+    <ProjectReference Include="..\Multitenant.Domain\Multitenant.Domain.csproj" />
   </ItemGroup>
 
 </Project>

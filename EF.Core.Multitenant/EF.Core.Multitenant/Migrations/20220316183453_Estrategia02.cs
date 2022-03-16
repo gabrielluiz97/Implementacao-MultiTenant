@@ -5,12 +5,16 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace Multitenant.API.Migrations
 {
-    public partial class Initial : Migration
+    public partial class Estrategia02 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.EnsureSchema(
+                name: "public");
+
             migrationBuilder.CreateTable(
                 name: "People",
+                schema: "public",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
@@ -25,6 +29,7 @@ namespace Multitenant.API.Migrations
 
             migrationBuilder.CreateTable(
                 name: "Products",
+                schema: "public",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
@@ -38,6 +43,7 @@ namespace Multitenant.API.Migrations
                 });
 
             migrationBuilder.InsertData(
+                schema: "public",
                 table: "People",
                 columns: new[] { "Id", "Name", "TenantId" },
                 values: new object[,]
@@ -48,6 +54,7 @@ namespace Multitenant.API.Migrations
                 });
 
             migrationBuilder.InsertData(
+                schema: "public",
                 table: "Products",
                 columns: new[] { "Id", "Description", "TenantId" },
                 values: new object[,]
@@ -61,10 +68,12 @@ namespace Multitenant.API.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "People");
+                name: "People",
+                schema: "public");
 
             migrationBuilder.DropTable(
-                name: "Products");
+                name: "Products",
+                schema: "public");
         }
     }
 }

@@ -11,13 +11,14 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Multitenant.API.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20220315215843_Initial")]
-    partial class Initial
+    [Migration("20220316183453_Estrategia02")]
+    partial class Estrategia02
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
+                .HasDefaultSchema("public")
                 .HasAnnotation("ProductVersion", "6.0.3")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
@@ -41,7 +42,7 @@ namespace Multitenant.API.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("People");
+                    b.ToTable("People", "public");
 
                     b.HasData(
                         new
@@ -82,7 +83,7 @@ namespace Multitenant.API.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Products");
+                    b.ToTable("Products", "public");
 
                     b.HasData(
                         new
