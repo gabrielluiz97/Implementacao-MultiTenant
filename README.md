@@ -1,4 +1,4 @@
-O projeto em questão, trata-se da implementação da abordagem conhecida como "Multi tenant". O multi tenant consiste na ideia de atender múltiplos clientes com apenas uma aplicação.
+O projeto em questão, trata-se da implementação da abordagem conhecida como "Multi-tenant". O multi tenant consiste na ideia de atender múltiplos clientes com apenas uma aplicação.
 
 
 A técnica abordada foi implementada nesse projeto de três formas diferentes, sendo elas:
@@ -8,3 +8,11 @@ Estratégia01 - Nessa estratégia os dados são inseridos no mesmo schema e são
 Estratégia02 - Nessa estratégia os dados foram inseridos na mema base, porém em schemas diferentes(branch: estrategia2).
 
 Estratégia03 - Nessa estratégia os dados foram inseridos em bases diferentes(branch: estrategia3).
+
+
+Comandos entity
+
+-Add-Migration -> gerar migrations
+-Update-Database -> executar migrations
+-Script-Migration -> Gera arquivo .sql para um migration
+-Update-Database -connection "Host=localhost:5432;Username=postgres;Password=123;Database=Tenantz;"
