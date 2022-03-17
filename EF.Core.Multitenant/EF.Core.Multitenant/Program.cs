@@ -15,7 +15,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-
+builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddScoped<ApplicationContext>((provider) =>
 {
@@ -25,7 +25,7 @@ builder.Services.AddScoped<ApplicationContext>((provider) =>
 
     var tenantId = httpContext?.GetTenantId();
 
-    var connectionString = builder.Configuration.GetConnectionString(tenantId) ?? @"Host=localhost:5432;Username=postgres;Password=123;Database=TenantZ";
+    var connectionString = builder.Configuration.GetConnectionString(tenantId) ?? builder.Configuration.GetConnectionString("tenantz");
 
     optionsBuilder
         .UseNpgsql(connectionString)
