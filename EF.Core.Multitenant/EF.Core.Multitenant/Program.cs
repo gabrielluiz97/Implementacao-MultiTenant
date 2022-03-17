@@ -1,10 +1,9 @@
 using EF.Core.Multitenant;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Multitenant.API.Extension;
 using Multitenant.API.Interceptors;
-using Multitenant.API.Midleware;
-using Multitenant.API.ModelFactory;
-using Multitenant.Infraestructure.Data;
+using Multitenant.Infraestructure.Data; 
 using Multitenant.Infraestructure.Database.Installers;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,18 +16,23 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 
-//Estratégia 2
-builder.Services.AddDbContext<ApplicationContext>((provider, options) =>
+
+builder.Services.AddScoped<ApplicationContext>((provider) =>
 {
-    options
-    .UseNpgsql(@"Host=localhost:5432;Username=postgres;Password=123;Database=Multitenant")
-    .LogTo(Console.WriteLine)
-    //.ReplaceService<IModelCacheKeyFactory, StrategySchemaModelCacheKey>()
-    .EnableSensitiveDataLogging();
+    var optionsBuilder = new DbContextOptionsBuilder<ApplicationContext>();
 
-    var interceptor = provider.GetRequiredService<StrategySchemaInterceptor>();
+    var httpContext = provider.GetService<IHttpContextAccessor>()?.HttpContext;
 
-    options.AddInterceptors(interceptor);
+    var tenantId = httpContext?.GetTenantId();
+
+    var connectionString = builder.Configuration.GetConnectionString(tenantId) ?? @"Host=localhost:5432;Username=postgres;Password=123;Database=TenantZ";
+
+    optionsBuilder
+        .UseNpgsql(connectionString)
+        .LogTo(Console.WriteLine)
+        .EnableSensitiveDataLogging();
+
+    return new ApplicationContext(optionsBuilder.Options);
 }); 
 
 builder.Services.InstallDependenceInjections();
@@ -36,7 +40,7 @@ var app = builder.Build();
 
 app.RunMigrations();
 
-app.UseMiddleware<TenantMidleware>();
+//app.UseMiddleware<TenantMidleware>();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

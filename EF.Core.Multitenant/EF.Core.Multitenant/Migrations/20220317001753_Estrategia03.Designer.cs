@@ -11,14 +11,13 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Multitenant.API.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20220316183453_Estrategia02")]
-    partial class Estrategia02
+    [Migration("20220317001753_Estrategia03")]
+    partial class Estrategia03
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasDefaultSchema("public")
                 .HasAnnotation("ProductVersion", "6.0.3")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
@@ -36,32 +35,25 @@ namespace Multitenant.API.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("TenantId")
-                        .IsRequired()
-                        .HasColumnType("text");
-
                     b.HasKey("Id");
 
-                    b.ToTable("People", "public");
+                    b.ToTable("People");
 
                     b.HasData(
                         new
                         {
                             Id = 1,
-                            Name = "Person 1",
-                            TenantId = "tenant-1"
+                            Name = "Person 1"
                         },
                         new
                         {
                             Id = 2,
-                            Name = "Person 2",
-                            TenantId = "tenant-2"
+                            Name = "Person 2"
                         },
                         new
                         {
                             Id = 3,
-                            Name = "Person 3",
-                            TenantId = "tenant-3"
+                            Name = "Person 3"
                         });
                 });
 
@@ -77,32 +69,25 @@ namespace Multitenant.API.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("TenantId")
-                        .IsRequired()
-                        .HasColumnType("text");
-
                     b.HasKey("Id");
 
-                    b.ToTable("Products", "public");
+                    b.ToTable("Products");
 
                     b.HasData(
                         new
                         {
                             Id = 1,
-                            Description = "Description 1",
-                            TenantId = "tenant-1"
+                            Description = "Description 1"
                         },
                         new
                         {
                             Id = 2,
-                            Description = "Description 2",
-                            TenantId = "tenant-2"
+                            Description = "Description 2"
                         },
                         new
                         {
                             Id = 3,
-                            Description = "Description 3",
-                            TenantId = "tenant-3"
+                            Description = "Description 3"
                         });
                 });
 #pragma warning restore 612, 618

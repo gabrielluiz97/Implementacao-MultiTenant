@@ -5,22 +5,17 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace Multitenant.API.Migrations
 {
-    public partial class Estrategia02 : Migration
+    public partial class Estrategia03 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.EnsureSchema(
-                name: "public");
-
             migrationBuilder.CreateTable(
                 name: "People",
-                schema: "public",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Name = table.Column<string>(type: "text", nullable: false),
-                    TenantId = table.Column<string>(type: "text", nullable: false)
+                    Name = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -29,13 +24,11 @@ namespace Multitenant.API.Migrations
 
             migrationBuilder.CreateTable(
                 name: "Products",
-                schema: "public",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Description = table.Column<string>(type: "text", nullable: false),
-                    TenantId = table.Column<string>(type: "text", nullable: false)
+                    Description = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -43,37 +36,33 @@ namespace Multitenant.API.Migrations
                 });
 
             migrationBuilder.InsertData(
-                schema: "public",
                 table: "People",
-                columns: new[] { "Id", "Name", "TenantId" },
+                columns: new[] { "Id", "Name" },
                 values: new object[,]
                 {
-                    { 1, "Person 1", "tenant-1" },
-                    { 2, "Person 2", "tenant-2" },
-                    { 3, "Person 3", "tenant-3" }
+                    { 1, "Person 1" },
+                    { 2, "Person 2" },
+                    { 3, "Person 3" }
                 });
 
             migrationBuilder.InsertData(
-                schema: "public",
                 table: "Products",
-                columns: new[] { "Id", "Description", "TenantId" },
+                columns: new[] { "Id", "Description" },
                 values: new object[,]
                 {
-                    { 1, "Description 1", "tenant-1" },
-                    { 2, "Description 2", "tenant-2" },
-                    { 3, "Description 3", "tenant-3" }
+                    { 1, "Description 1" },
+                    { 2, "Description 2" },
+                    { 3, "Description 3" }
                 });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "People",
-                schema: "public");
+                name: "People");
 
             migrationBuilder.DropTable(
-                name: "Products",
-                schema: "public");
+                name: "Products");
         }
     }
 }
