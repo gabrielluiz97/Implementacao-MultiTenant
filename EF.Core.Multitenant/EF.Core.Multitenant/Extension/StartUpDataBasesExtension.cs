@@ -3,7 +3,7 @@ using Multitenant.Infraestructure.Data;
 
 namespace Multitenant.API.Extension
 {
-    public static class BuilderExtension
+    public static class StartUpDataBasesExtension
     {
         public static IList<ApplicationContext> GenerateContexts(this WebApplicationBuilder builder)
         {
@@ -22,14 +22,9 @@ namespace Multitenant.API.Extension
 
         private static IList<string> GetConnectionStrings(ConfigurationManager configuration)
         {
-            //TODO: Definir estratégia para capturar connections strings de forma dinâmica
-            var connectionStrings = new List<string>() {
-                configuration.GetConnectionString("Tenant1"),
-                configuration.GetConnectionString("Tenant2"),
-                configuration.GetConnectionString("Tenantz")
-            };
+            var connectionStrings = configuration.GetSection("ConnectionStrings").GetChildren().ToList();
 
-            return connectionStrings;
+            return connectionStrings.Select(c=> c.Value).ToList();
         }
 
         private static ApplicationContext GenarateContext(string connectionString)
@@ -37,7 +32,8 @@ namespace Multitenant.API.Extension
             var optionsBuilder = new DbContextOptionsBuilder<ApplicationContext>();
 
             optionsBuilder
-                .UseNpgsql(connectionString)
+                .UseNpgsql(connectionString,
+                    x => x.MigrationsAssembly("Multitenant.Migration"))
                 .LogTo(Console.WriteLine)
                 .EnableSensitiveDataLogging();
 

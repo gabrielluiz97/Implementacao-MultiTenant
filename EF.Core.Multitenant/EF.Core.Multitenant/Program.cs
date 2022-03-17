@@ -16,7 +16,25 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddHttpContextAccessor();
 
-builder.InstallDependenceInjections();
+builder.Services.InstallDependenceInjections();
+
+builder.Services.AddScoped<ApplicationContext>((provider) =>
+{
+    var optionsBuilder = new DbContextOptionsBuilder<ApplicationContext>();
+
+    var httpContext = provider.GetService<IHttpContextAccessor>()?.HttpContext;
+
+    var tenantId = httpContext?.GetTenantId();
+
+    var connectionString = builder.Configuration.GetConnectionString(tenantId) ?? builder.Configuration.GetConnectionString("tenantz");
+
+    optionsBuilder
+        .UseNpgsql(connectionString)
+        .LogTo(Console.WriteLine)
+        .EnableSensitiveDataLogging();
+
+    return new ApplicationContext(optionsBuilder.Options);
+});
 
 var app = builder.Build();
 

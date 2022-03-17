@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Multitenant.API.Provider;
 using Multitenant.Domain;
 using System;
 using System.Collections.Generic;
@@ -21,8 +20,6 @@ namespace Multitenant.Infraestructure.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            base.OnModelCreating(modelBuilder);
-
             modelBuilder.Entity<Person>().HasData(
                 new Person { Id = 1, Name = "Person 1",},
                 new Person { Id = 2, Name = "Person 2" },

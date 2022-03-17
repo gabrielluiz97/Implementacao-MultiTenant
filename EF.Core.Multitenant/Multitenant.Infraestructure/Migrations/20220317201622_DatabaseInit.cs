@@ -3,9 +3,9 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace Multitenant.API.Migrations
+namespace Multitenant.Infraestructure.Migrations
 {
-    public partial class Estrategia03 : Migration
+    public partial class DatabaseInit : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
