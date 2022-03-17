@@ -8,17 +8,17 @@ namespace Multitenant.API.Controllers
     [Route("{tenant}/[Controller]")]
     public class ProductController : ControllerBase
     {
-        private readonly ILogger<ProductController> _logger;
+        private readonly ApplicationContext _db;
 
-        public ProductController(ILogger<ProductController> logger)
+        public ProductController(ApplicationContext db)
         {
-            _logger = logger;
+            _db = db;
         }
 
         [HttpGet]
-        public IEnumerable<Product> Get([FromServices] ApplicationContext db)
+        public IEnumerable<Product> Get()
         {
-            var products = db.Products.ToArray();
+            var products = _db.Products.ToArray();
 
             return products;
         }

@@ -2,7 +2,6 @@ using EF.Core.Multitenant;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Multitenant.API.Extension;
-using Multitenant.API.Interceptors;
 using Multitenant.Infraestructure.Data; 
 using Multitenant.Infraestructure.Database.Installers;
 
@@ -17,30 +16,15 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddHttpContextAccessor();
 
-builder.Services.AddScoped<ApplicationContext>((provider) =>
-{
-    var optionsBuilder = new DbContextOptionsBuilder<ApplicationContext>();
+builder.InstallDependenceInjections();
 
-    var httpContext = provider.GetService<IHttpContextAccessor>()?.HttpContext;
-
-    var tenantId = httpContext?.GetTenantId();
-
-    var connectionString = builder.Configuration.GetConnectionString(tenantId) ?? builder.Configuration.GetConnectionString("tenantz");
-
-    optionsBuilder
-        .UseNpgsql(connectionString)
-        .LogTo(Console.WriteLine)
-        .EnableSensitiveDataLogging();
-
-    return new ApplicationContext(optionsBuilder.Options);
-}); 
-
-builder.Services.InstallDependenceInjections();
 var app = builder.Build();
 
-app.RunMigrations();
+//generate all application contexts
+var applicationsContexts = builder.GenerateContexts();
 
-//app.UseMiddleware<TenantMidleware>();
+//execute migrations on all databases
+applicationsContexts.RunMigrationsOnDataBases();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

@@ -10,21 +10,23 @@ namespace EF.Core.Multitenant
 {
     public static class SeedsInitilizer
     {
-        public static void RunMigrations(this IApplicationBuilder application)
+        public static void RunMigrationsOnDataBases(this IList<ApplicationContext> contexts)
         {
-            using var db = application.ApplicationServices
-                .CreateScope()
-                .ServiceProvider
-                .GetRequiredService<ApplicationContext>();
+            foreach (var context in contexts)
+                RunMigrationOnDataBase(context);
+        }
 
-            var canConnect = db.Database.CanConnect();
+        private static void RunMigrationOnDataBase(ApplicationContext context)
+        {
+            //var canConnect = context.Database.CanConnect();
 
-            if (!canConnect)
-            {
-                db.Database.EnsureDeleted();
-                db.Database.EnsureCreated();
-            }
+            //if (!canConnect)
+            //{
+            //    context.Database.EnsureCreated();
+            //}
 
+            context.Database.EnsureDeleted();
+            context.Database.EnsureCreated();
         }
     }
 }

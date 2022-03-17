@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Multitenant.API", "EF.Core.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Multitenant.Domain", "Multitenant.Domain\Multitenant.Domain.csproj", "{3393E4F2-6768-4BBE-A27F-C1FDDC438E48}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Multitenant.Migration", "Multitenant.Migration\Multitenant.Migration.csproj", "{4ECAD392-A7EB-493F-B178-E8B48DF577C9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{3393E4F2-6768-4BBE-A27F-C1FDDC438E48}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3393E4F2-6768-4BBE-A27F-C1FDDC438E48}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3393E4F2-6768-4BBE-A27F-C1FDDC438E48}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4ECAD392-A7EB-493F-B178-E8B48DF577C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4ECAD392-A7EB-493F-B178-E8B48DF577C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4ECAD392-A7EB-493F-B178-E8B48DF577C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4ECAD392-A7EB-493F-B178-E8B48DF577C9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

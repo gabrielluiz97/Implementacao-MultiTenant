@@ -8,17 +8,17 @@ namespace Multitenant.API.Controllers
     [Route("{tenant}/[Controller]")]
     public class PersonController : ControllerBase
     {
-        private readonly ILogger<PersonController> _logger;
+        private readonly ApplicationContext _db;
 
-        public PersonController(ILogger<PersonController> logger)
+        public PersonController(ApplicationContext db)
         {
-            _logger = logger;
+            _db = db;
         }
 
         [HttpGet]
-        public IEnumerable<Person> Get([FromServices]ApplicationContext db)
+        public IEnumerable<Person> Get()
         {
-            var people = db.People.ToArray();
+            var people = _db.People.ToArray();
 
             return people;
         }
