@@ -1,9 +1,6 @@
-using EF.Core.Multitenant;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Infrastructure;
 using Multitenant.API.Interceptors;
 using Multitenant.API.Midleware;
-using Multitenant.API.ModelFactory;
 using Multitenant.Infraestructure.Data;
 using Multitenant.Infraestructure.Database.Installers;
 
@@ -18,23 +15,26 @@ builder.Services.AddSwaggerGen();
 
 
 //Estratégia 2
+builder.Services.AddScoped<StrategySchemaInterceptor>();
+
 builder.Services.AddDbContext<ApplicationContext>((provider, options) =>
 {
+    var optionsBuilder = new DbContextOptionsBuilder<ApplicationContext>();
+
     options
-    .UseNpgsql(@"Host=localhost:5432;Username=postgres;Password=123;Database=Multitenant")
+    .UseNpgsql(builder.Configuration.GetConnectionString("TenantZ"), b => b.MigrationsAssembly("Multitenant.Infraestructure"))
     .LogTo(Console.WriteLine)
-    //.ReplaceService<IModelCacheKeyFactory, StrategySchemaModelCacheKey>()
     .EnableSensitiveDataLogging();
 
     var interceptor = provider.GetRequiredService<StrategySchemaInterceptor>();
 
     options.AddInterceptors(interceptor);
-}); 
+});
 
-builder.Services.InstallDependenceInjections();
+
+builder.Services.InstallServices();
 var app = builder.Build();
 
-app.RunMigrations();
 
 app.UseMiddleware<TenantMidleware>();
 
