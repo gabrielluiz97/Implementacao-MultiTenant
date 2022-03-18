@@ -1,10 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Multitenant.Domain;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Multitenant.Infraestructure.Data
 {
@@ -16,6 +11,11 @@ namespace Multitenant.Infraestructure.Data
         public ApplicationContext(DbContextOptions<ApplicationContext> options)
             : base(options)
         {
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.SeedsInit();
         }
     }
 }
