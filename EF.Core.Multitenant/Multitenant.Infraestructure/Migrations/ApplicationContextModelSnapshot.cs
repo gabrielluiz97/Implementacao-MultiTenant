@@ -36,23 +36,6 @@ namespace Multitenant.Infraestructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("People");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "Person 1"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "Person 2"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Name = "Person 3"
-                        });
                 });
 
             modelBuilder.Entity("Multitenant.Domain.Product", b =>
@@ -70,23 +53,6 @@ namespace Multitenant.Infraestructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Products");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Description = "Description 1"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Description = "Description 2"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Description = "Description 3"
-                        });
                 });
 #pragma warning restore 612, 618
         }

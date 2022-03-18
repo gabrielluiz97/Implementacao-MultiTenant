@@ -3,9 +3,9 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace Multitenant.API.Migrations
+namespace Multitenant.Infraestructure.Migrations
 {
-    public partial class Estrategia03 : Migration
+    public partial class DatabaseInit : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -33,26 +33,6 @@ namespace Multitenant.API.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Products", x => x.Id);
-                });
-
-            migrationBuilder.InsertData(
-                table: "People",
-                columns: new[] { "Id", "Name" },
-                values: new object[,]
-                {
-                    { 1, "Person 1" },
-                    { 2, "Person 2" },
-                    { 3, "Person 3" }
-                });
-
-            migrationBuilder.InsertData(
-                table: "Products",
-                columns: new[] { "Id", "Description" },
-                values: new object[,]
-                {
-                    { 1, "Description 1" },
-                    { 2, "Description 2" },
-                    { 3, "Description 3" }
                 });
         }
 

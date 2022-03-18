@@ -17,18 +17,5 @@ namespace Multitenant.Infraestructure.Data
             : base(options)
         {
         }
-
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<Person>().HasData(
-                new Person { Id = 1, Name = "Person 1",},
-                new Person { Id = 2, Name = "Person 2" },
-                new Person { Id = 3, Name = "Person 3"});
-
-            modelBuilder.Entity<Product>().HasData(
-                new Product { Id = 1, Description = "Description 1"},
-                new Product { Id = 2, Description = "Description 2"},
-                new Product { Id = 3, Description = "Description 3"});
-        }
     }
 }
